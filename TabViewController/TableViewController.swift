@@ -9,7 +9,9 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
+    
+    let shopList: Array<String> = ["patate", "fromage", "pizza", "jambon", "pate", "beurre"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,28 +24,32 @@ class TableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numberCell: Int = 0;
-        if(section == 0){
-           numberCell = 3
-        } else if(section == 1){
-            numberCell = 5
-        }
-        return numberCell
+        return self.shopList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("Cellule at\(indexPath.row)")
-        var cell: UITableViewCell = UITableViewCell();
-        if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "maCellule-1", for: indexPath)
-        } else if indexPath.section == 1 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "maCellule-2", for: indexPath)
-
+        let cell = indexPath.section == 1 ? tableView.dequeueReusableCell(withIdentifier: "maCellule-2", for: indexPath) : tableView.dequeueReusableCell(withIdentifier: "maCellule-1", for: indexPath)
+        if let myCell = cell as? MyTableViewCell {
+            myCell.label.text = shopList[indexPath.row]
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let ctrl: UIViewController = UIViewController()
+        ctrl.view.backgroundColor = UIColor.blue
+        self.present(ctrl, animated: true){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+                self.dismiss(animated: true)
+            }
+        }
+        
     }
 }

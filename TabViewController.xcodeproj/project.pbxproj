@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A79171D1EE16F3C00CA13A6 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79171C1EE16F3C00CA13A6 /* MyTableViewCell.swift */; };
 		4AB01E301EE1563900D0BB37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB01E2F1EE1563900D0BB37 /* AppDelegate.swift */; };
 		4AB01E321EE1563900D0BB37 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB01E311EE1563900D0BB37 /* TableViewController.swift */; };
 		4AB01E351EE1563900D0BB37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AB01E331EE1563900D0BB37 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A79171C1EE16F3C00CA13A6 /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		4AB01E2C1EE1563900D0BB37 /* TabViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB01E2F1EE1563900D0BB37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AB01E311EE1563900D0BB37 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				4AB01E361EE1563A00D0BB37 /* Assets.xcassets */,
 				4AB01E381EE1563A00D0BB37 /* LaunchScreen.storyboard */,
 				4AB01E3B1EE1563A00D0BB37 /* Info.plist */,
+				4A79171C1EE16F3C00CA13A6 /* MyTableViewCell.swift */,
 			);
 			path = TabViewController;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				4AB01E321EE1563900D0BB37 /* TableViewController.swift in Sources */,
 				4AB01E301EE1563900D0BB37 /* AppDelegate.swift in Sources */,
+				4A79171D1EE16F3C00CA13A6 /* MyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +509,7 @@
 				4AB01E561EE1563A00D0BB37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AB01E571EE1563A00D0BB37 /* Build configuration list for PBXNativeTarget "TabViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +518,7 @@
 				4AB01E591EE1563A00D0BB37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AB01E5A1EE1563A00D0BB37 /* Build configuration list for PBXNativeTarget "TabViewControllerUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +527,7 @@
 				4AB01E5C1EE1563A00D0BB37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
