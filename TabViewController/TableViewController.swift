@@ -48,6 +48,8 @@ class TableViewController: UITableViewController {
         self.present(ctrl, animated: true){
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
                 self.dismiss(animated: true)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: storyboard)
             }
         }
         
