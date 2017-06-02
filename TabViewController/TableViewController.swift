@@ -22,16 +22,28 @@ class TableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        var numberCell: Int = 0;
+        if(section == 0){
+           numberCell = 3
+        } else if(section == 1){
+            numberCell = 5
+        }
+        return numberCell
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("Cellule at\(indexPath.row)")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "maCellule-1", for: indexPath)
+        var cell: UITableViewCell = UITableViewCell();
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "maCellule-1", for: indexPath)
+        } else if indexPath.section == 1 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "maCellule-2", for: indexPath)
+
+        }
         return cell
     }
 }

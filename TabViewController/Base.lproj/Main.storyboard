@@ -43,13 +43,31 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="LA CELLULE" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1tl-0o-ppY">
-                                            <rect key="frame" x="123" y="42" width="128" height="42"/>
+                                            <rect key="frame" x="123" y="60" width="128" height="42"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="maCellule-2" id="ldZ-Cw-DlH">
+                                <rect key="frame" x="0.0" y="192" width="375" height="164"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldZ-Cw-DlH" id="XKC-Y4-AJw">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="163"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="LA CELLULE 2" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yqF-h3-s9K" colorLabel="IBBuiltInLabel-Red">
+                                            <rect key="frame" x="123" y="65" width="129" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="0.024621830058607408" blue="0.01740202853642725" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="0.062486224085140152" blue="0.067339510990312879" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
