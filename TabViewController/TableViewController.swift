@@ -10,11 +10,13 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
+    var text: String = "default"
+    
     let shopList: Array<String> = ["patate", "fromage", "pizza", "jambon", "pate", "beurre"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        myLabel.text = text
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -40,18 +42,12 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        let ctrl: UIViewController = UIViewController()
-        ctrl.view.backgroundColor = UIColor.blue
-        self.present(ctrl, animated: true){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
-                self.dismiss(animated: true)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: storyboard)
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let ctrl = segue.destination as? DetailViewController,
+        let cell = sender as? MyTableViewCell,
+            let indexPath = self.tableView.indexPath(for: cell){
+         ctrl.text = self.shopList[indexPath.row]
         }
-        
     }
+    
 }
