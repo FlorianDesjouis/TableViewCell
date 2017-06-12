@@ -7,17 +7,28 @@
 //
 
 import UIKit
+import Alamofire
+
+let url = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.theguardian.com%2Finternational%2Frss"
 
 class TableViewController: UITableViewController {
     
     var text: String = "default"
     
-    let shopList: Array<String> = ["patate", "fromage", "pizza", "jambon", "pate", "beurre"]
+    var shopList: [[String: Any]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myLabel.text = text
-        // Do any additional setup after loading the view, typically from a nib.
+        self.view.backgroundColor = UIColor.blue
+        
+        Alamofire.request(url).responseJSON {(response) in if let serialized = response.value as? Dictionary<String, Any>,
+            let items = serialized["items"] as? Array<Dictionary<String, Any>> {
+            self.shopList = items
+            self.tableView.reloadData()
+            print("Data loaded items \(items.count)")
+            
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,7 +41,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.shopList.count
+        return self.shopList?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,11 +54,17 @@ class TableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let ctrl = segue.destination as? DetailViewController,
-        let cell = sender as? MyTableViewCell,
-            let indexPath = self.tableView.indexPath(for: cell){
-         ctrl.text = self.shopList[indexPath.row]
+        if let ctrl = segue.destination as? DetailViewController {
+            if let cell = sender as? MyTableViewCell {
+            if let indexPath = self.tableView.indexPath(for: cell) {
+                if let list = self.shopList{
+                    let item = shopList?[indexPath.row]
+                    if let title = item?["title"] as! String? {
+                        ctrl.text = title
+                        }
+                    }
+                }
+            }
         }
     }
-    
 }

@@ -1,0 +1,6 @@
+framework module Pods_TabViewController {
+  umbrella header "Pods-TabViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

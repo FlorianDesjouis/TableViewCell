@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16CAC9FE0986BD1CCA435759 /* Pods_TabViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB651D00E79577BE73FCE10A /* Pods_TabViewController.framework */; };
 		4A79171D1EE16F3C00CA13A6 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79171C1EE16F3C00CA13A6 /* MyTableViewCell.swift */; };
 		4AB01E301EE1563900D0BB37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB01E2F1EE1563900D0BB37 /* AppDelegate.swift */; };
 		4AB01E321EE1563900D0BB37 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB01E311EE1563900D0BB37 /* TableViewController.swift */; };
@@ -15,6 +16,7 @@
 		4AB01E3A1EE1563A00D0BB37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AB01E381EE1563A00D0BB37 /* LaunchScreen.storyboard */; };
 		4AB01E451EE1563A00D0BB37 /* TabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB01E441EE1563A00D0BB37 /* TabViewControllerTests.swift */; };
 		4AB01E501EE1563A00D0BB37 /* TabViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB01E4F1EE1563A00D0BB37 /* TabViewControllerUITests.swift */; };
+		AA766A541EEE8EBA0082BA69 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA766A531EEE8EBA0082BA69 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B65FF581A0BC7AD5B15A912 /* Pods-TabViewController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TabViewController.release.xcconfig"; path = "Pods/Target Support Files/Pods-TabViewController/Pods-TabViewController.release.xcconfig"; sourceTree = "<group>"; };
 		4A79171C1EE16F3C00CA13A6 /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		4AB01E2C1EE1563900D0BB37 /* TabViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB01E2F1EE1563900D0BB37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		4AB01E4B1EE1563A00D0BB37 /* TabViewControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TabViewControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB01E4F1EE1563A00D0BB37 /* TabViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewControllerUITests.swift; sourceTree = "<group>"; };
 		4AB01E511EE1563A00D0BB37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		629F61C57F868CAE4A27B646 /* Pods-TabViewController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TabViewController.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TabViewController/Pods-TabViewController.debug.xcconfig"; sourceTree = "<group>"; };
+		AA766A531EEE8EBA0082BA69 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CB651D00E79577BE73FCE10A /* Pods_TabViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TabViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16CAC9FE0986BD1CCA435759 /* Pods_TabViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		263A2E68DE7BE0367AABF855 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				629F61C57F868CAE4A27B646 /* Pods-TabViewController.debug.xcconfig */,
+				3B65FF581A0BC7AD5B15A912 /* Pods-TabViewController.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4AB01E231EE1563900D0BB37 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +99,8 @@
 				4AB01E431EE1563A00D0BB37 /* TabViewControllerTests */,
 				4AB01E4E1EE1563A00D0BB37 /* TabViewControllerUITests */,
 				4AB01E2D1EE1563900D0BB37 /* Products */,
+				263A2E68DE7BE0367AABF855 /* Pods */,
+				79984E870D7200F3296D2C79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +124,7 @@
 				4AB01E381EE1563A00D0BB37 /* LaunchScreen.storyboard */,
 				4AB01E3B1EE1563A00D0BB37 /* Info.plist */,
 				4A79171C1EE16F3C00CA13A6 /* MyTableViewCell.swift */,
+				AA766A531EEE8EBA0082BA69 /* DetailViewController.swift */,
 			);
 			path = TabViewController;
 			sourceTree = "<group>";
@@ -128,6 +147,14 @@
 			path = TabViewControllerUITests;
 			sourceTree = "<group>";
 		};
+		79984E870D7200F3296D2C79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB651D00E79577BE73FCE10A /* Pods_TabViewController.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AB01E541EE1563A00D0BB37 /* Build configuration list for PBXNativeTarget "TabViewController" */;
 			buildPhases = (
+				E4FA6C17935E04971B884807 /* [CP] Check Pods Manifest.lock */,
 				4AB01E281EE1563900D0BB37 /* Sources */,
 				4AB01E291EE1563900D0BB37 /* Frameworks */,
 				4AB01E2A1EE1563900D0BB37 /* Resources */,
+				125213C29A2DBC81FA7BA71D /* [CP] Embed Pods Frameworks */,
+				BD1E65678C48AD33B8B06704 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,6 +287,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		125213C29A2DBC81FA7BA71D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TabViewController/Pods-TabViewController-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD1E65678C48AD33B8B06704 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TabViewController/Pods-TabViewController-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4FA6C17935E04971B884807 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4AB01E281EE1563900D0BB37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -265,6 +343,7 @@
 				4AB01E321EE1563900D0BB37 /* TableViewController.swift in Sources */,
 				4AB01E301EE1563900D0BB37 /* AppDelegate.swift in Sources */,
 				4A79171D1EE16F3C00CA13A6 /* MyTableViewCell.swift in Sources */,
+				AA766A541EEE8EBA0082BA69 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +493,7 @@
 		};
 		4AB01E551EE1563A00D0BB37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 629F61C57F868CAE4A27B646 /* Pods-TabViewController.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TabViewController/Info.plist;
@@ -426,6 +506,7 @@
 		};
 		4AB01E561EE1563A00D0BB37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B65FF581A0BC7AD5B15A912 /* Pods-TabViewController.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TabViewController/Info.plist;
