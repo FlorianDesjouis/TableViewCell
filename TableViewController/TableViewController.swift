@@ -14,41 +14,12 @@ import ObjectMapper
 typealias myDico = Dictionary<String,Any>
 typealias myArray = Array<myDico>
 
-/*
-class myRequest: Mappable {
-    var status: String
-    var items = Array<myItem>()
-    
-    required init?(map: Map){
-        
-    }
-    func mapping(map: Map){
-        status <- map["status"]
-        items <- map["items"]
-    }
-}
-
-class myItem: Mappable {
-    var title: String
-    var content: String
-    
-    required init?(map: Map){
-        
-    }
-    func mapping(map: Map){
-        title <- map["title"]
-        content <- map["description"]
-    }
-    
-}
-*/
-
 
 class MyRequest: Mappable {
     var status: String!
     var items: Array<MyItem>!
     
-    required init?(map: Map){
+    required init?(map: Map) {
         
     }
     
@@ -61,224 +32,184 @@ class MyRequest: Mappable {
 class MyItem: Mappable{
     var title: String!
     var content: String!
-    var author: String!
     var date: String!
+    var author: String!
     
     required init?(map: Map){
         
+    }
+
+    required init?(title: String, content: String, date: String, author: String){
+        self.title = title
+        self.content = content
+        self.date = date
+        self.author = author
     }
     
     func mapping(map: Map) {
         title <- map["title"]
         content <- map["content"]
-        author <- map["author"]
         date <- map["pubDate"]
+        author <- map["author"]
     }
 }
 
 class TableViewController: UITableViewController {
-    
-    //add label
-    var text:String = "Default"
-    
-    var list = [AnyObject]()
 
-    /*
-    let listCourse : [String] = ["Banabne",
-                                 "Chocolat",
-                                 "Ramen",
-                                 "Coca",
-                                 "Dentifrice",
-                                 "Lait"]
-    */
+    @IBAction func rigthButton(_ sender: UIBarButtonItem) {
+        print("hello")
+    }
+    
+    var text:String = "Default"
+    var list = [AnyObject]()
+    
+    var MyRequest: MyRequest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        myLabel.text = text
-        
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 60.0
-        
-        Alamofire.request("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fgifs.rss").responseJSON{ response in
+    
+        Alamofire.request("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fgifs.rss").responseObject{ (response: DataResponse<MyRequest>) in
+           
+            self.MyRequest = response.result.value
             
-            guard let dict = response.value as? myDico else {
-                return
-            }
-            
-            if let innerDict = dict["items"]{
-                self.list = innerDict as! [AnyObject]
-                self.tableView.reloadData()
-            }
-            
-            /*
-                if let dict = response.value as? Dictionary<String,AnyObject>{
-                    if let innerDict = dict["items"]{
-                        self.list = innerDict as! [AnyObject]
-                        self.tableView.reloadData()
-                    }
-                }
-             */
-            
+            self.tableView.reloadData()
         }
         
-        // Do any additional setup after loading the view, typically from a nib.
-        //self.view.backgroundColor = UIColor.blue //Change background color
+        let barButton = UIBarButtonItem(title: "Hello", style: .done, target: self, action: #selector(buttonHasBennPressed))
+        self.navigationItem.rightBarButtonItem = barButton
+        
+        let barButtonEdit = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(editAction))
+        self.navigationItem.leftBarButtonItem = barButtonEdit
+        
     }
+    
+    func editAction(){
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+    }
+    
+    func buttonHasBennPressed(){
+        print("hello")
+        
+        let alertController = UIAlertController(title: "My Alert", message: "Hello world", preferredStyle: .alert)
+        
+//        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+//            print("yo")
+//        })
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Toto"
+        }
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alertController] (_) in
+            let textField = alertController?.textFields![0]
+            
+            let value = textField?.text ?? ""
+            
+            print("Hello : \(value)")
+        }))
+        
+        let addRowAction = UIAlertAction(title: "Add row", style: .default, handler: { (action) in
+            
+            let item = MyItem(title: "Hello", content: "its me", date: "now", author : "Mario")
+            
+            self.MyRequest?.items.append(item!)
+            
+            let indexPath = IndexPath(row: (self.MyRequest?.items.count)! - 1, section: 0)
+            
+            self.tableView.insertRows(at: [indexPath], with: .fade)
+            
+        })
+        
+        alertController.addAction(addRowAction)
+        
+//        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true)
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int{
-        return 1 //change to change the number of section
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return section == 1 ? 3 : 5
-        //return 3
-        return self.list.count
+        return self.MyRequest?.items.count ?? 0
     }
     
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        
+        var tmp = self.MyRequest?.items[sourceIndexPath.row]
+        
+        self.MyRequest?.items.remove(at: sourceIndexPath.row)
+        self.MyRequest?.items.insert(tmp!, at: sourceIndexPath.row)
+        
+        
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            
+            self.MyRequest?.items.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+            
+        }
+    
+    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        print(indexPath)
-        //print(indexPath)
-
         
-        //let toto = "macellule-" + String(indexPath.section + 1)
-        //let toto = "macellule-\(indexPath.section+1)"
-
         let identifier = "macellule-1"
-//        let identifier = indexPath.section == 0 ? "macellule-1" : "macellule-2"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath )
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath )
         
         guard let myCell = cell as? MyTableViewCell else {
             return  UITableViewCell()
         }
         
-        myCell.configure(list[indexPath.row]["title"] as! String)
+//        myCell.configure(list[indexPath.row]["title"] as! String)
         
-        /*
-        //permet de savoir si myCell est du type MyTableViewCell
-        if let myCell = cell as? MyTableViewCell {
-            //myCell.myLabel.text = listCourse[indexPath.row]
-            myCell.configure(list[indexPath.row]["title"] as! String)
-        }
-        */
-        
-        //OU
-//        if cell is MyTableViewCell
+        myCell.configure((MyRequest?.items[indexPath.row].title)!)
         
         return cell
     }
-   
-    
-    /*
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        tableView.dese
-        
-        print("Selected row: \(indexPath.row)")
-     
-        let text : String = self.list[indexPath.row] as! String
-        
-        
-//        let ctr: UIViewController = UIViewController()
-//        ctr.view.backgroundColor = UIColor.red
-//        self.present(ctr, animated: true) {
-//
-//            
-//            
-//            let btn = UIButton(type: .custom) as UIButton
-//            //btn.backgroundColor = .blue
-//            btn.setTitle("Close", for: .normal)
-//            btn.frame = CGRect(x: 150, y: 200, width: 100, height: 50)
-//            
-//            btn.addTarget(self, action: #selector(self.close(sender:)), for: .touchUpInside)
-//            
-////            btn.addTarget(self, action: #selector(clickMe), for: .touchUpInside)
-//            ctr.view.addSubview(btn)
-//            
-//            let label = UILabel()
-//            label.textColor = .white
-//            label.text = text
-//            label.frame = CGRect(x: 175, y: 100, width: 100, height: 50)
-//            ctr.view.addSubview(label)
-//
-//            
-//            /*
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "someViewController")
-//            */
-//            
-//            /*
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
-//                self.dismiss(animated: true)
-//            }
-//             */
-//            
-//        }
-        
-    }
- */
-    
-    /*
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
-    }
-    */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
+        
         guard let ctr = segue.destination as? ViewController,
             let cell = sender as? MyTableViewCell,
             let indexPath = self.tableView.indexPath(for: cell) else {
                 return
         }
         
-        /*
-        do {
-            let attrStr = try NSAttributedString(
-                data: "<b><i>text</i></b>".data(using: String.Encoding.unicode, allowLossyConversion: true)!,
-                options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                documentAttributes: nil)
-            print(attrStr)
-            //ctr.myLabel.attributedText = attrStr
-        } catch let error {
-        }
-        */
+//        ctr.text = self.list[indexPath.row]["description"] as! String
+        
+        ctr.text = (self.MyRequest?.items[indexPath.row].content)!
+        ctr.date = (self.MyRequest?.items[indexPath.row].date)!
+        ctr.author = (self.MyRequest?.items[indexPath.row].author)!
+    
+        
+    }
 
-        ctr.text = self.list[indexPath.row]["description"] as! String
-        ctr.author = self.list[indexPath.row]["author"] as! String
-        ctr.date = self.list[indexPath.row]["pubDate"] as! String
-        
-        print(ctr.text)
-        
-        /*
-        if let ctr = segue.destination as? ViewController, let cell = sender as? MyTableViewCell, let indexPath = self.tableView.indexPath(for: cell){
-            ctr.text = self.list[indexPath.row]["description"] as! String
-        }
-         */
-    }
-    
-    func close(sender:UIButton!) {
-//        print("Button Clicked")
-        self.dismiss(animated: true)
-    }
-    
 }
-
-
-/*
- 
- 
- pod init
- add to target (podfile)
- pod install
- 
- 
- 
- */
 
